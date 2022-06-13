@@ -1,6 +1,8 @@
 import cv2 as cv
 import numpy as np
 
+import Publish
+
 
 class Camera:
     cap: cv.VideoCapture
@@ -22,8 +24,8 @@ class Camera:
                 self.last = gray
 
                 hsv = cv.cvtColor(blur, cv.COLOR_BGR2HSV)
-                lower_blue = np.array([95,64,127])
-                upper_blue = np.array([130,255,255])
+                lower_blue = np.array([95, 64, 127])
+                upper_blue = np.array([130, 255, 255])
 
                 mask = cv.inRange(hsv, lower_blue, upper_blue)
 
@@ -38,7 +40,7 @@ class Camera:
                 return img
             else:
                 self.last = cv.cvtColor(blur, cv.COLOR_BGR2GRAY)
-                
+
                 return img
 
         return None
@@ -46,14 +48,20 @@ class Camera:
 
 if __name__ == "__main__":
     cam = Camera()
+    publisher = Publish.Publisher()
+
     imgs = []
-    wr = cv.VideoWriter('blue3.mp4', cv.VideoWriter_fourcc('m', 'p', '4', 'v'), 15, (int(cam.cap.get(3)), int(cam.cap.get(4))))
+    wr = cv.VideoWriter('blue3.mp4', cv.VideoWriter_fourcc('m', 'p', '4', 'v'), 15,
+                        (int(cam.cap.get(3)), int(cam.cap.get(4))))
     while True:
         img = cam.take()
+        publisher.send_on() # for testing
         if img is None:
-            break
+            continue#break
         wr.write(img)
         cv.imshow("blue", cam.take())
+        #publisher.send_on()  # or send_off
+
         k = cv.waitKey(5)
         if k == 27:
             break
