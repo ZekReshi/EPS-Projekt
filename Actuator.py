@@ -3,8 +3,8 @@
 from __future__ import division
 import time
 import paho.mqtt.client as mqtt
+import vehicledetectionmessage_pb2
 import logging
-from at.jku.pervasive.eps.mymqttmessages.mymqttmessages_pb2 import *
 
 
 class Actuator:
@@ -14,11 +14,30 @@ class Actuator:
         self.logger = logging.getLogger(__name__)
         logging.basicConfig(level="INFO")
         self.client.on_connect = self.on_connect
-        self.client.on_message = call_back
+        self.client.on_message = self.on_message
+        self.call_back = call_back
 
     def on_connect(self, client, userdata, flags, rc):
-        self.logger.info('Connected with result code %s', str(rc))
         client.subscribe("emergencyvehicledetection", qos=0)
+        self.logger.info('Connected with result code %s', str(rc))
+
+    def on_message(self, client, userdata, msg):
+        commandString = str(msg.payload)
+        proto_msg = vehicledetectionmessage_pb2.PBMessage()
+        try:
+            proto_msg.ParseFromString(msg.payload)
+
+            if proto_msg.HasField('action'):
+                self.logger.debug('got message at %s with content %s', str(msg.topic), commandString)
+                self.logger.info('got message from %s (with target %s)', proto_msg.source, proto_msg.target)
+                self.logger.info('action numeric %s', proto_msg.control.action)
+                self.logger.info('action Info %s', vehicledetectionmessage_pb2.Action.Name(proto_msg.control.action))
+                self.call_back(proto_msg.control.action)
+            else:
+                self.logger.warning('got message at %s with content %s', str(msg.topic), commandString)
+        except:
+            self.logger.warning('Unable to decode message: No valid ProtoBuf Msg received')
+
 
 
     def on_run(self):
@@ -29,13 +48,3 @@ class Actuator:
             self.logger.info('disconnecting ...')
             self.client.disconnect()
             time.sleep(1)
-
-
-# mqtt message received callback function
-
-
-
-# setup mqtt
-
-
-# connect mqtt
