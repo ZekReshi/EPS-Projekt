@@ -8,7 +8,7 @@ if __name__ == '__main__':
     client.connect("iot.soft.uni-linz.ac.at", 1883, 60)
     try:
         while True:
-            rand = random.choices([0,1],weights = (20,70), k =1)
+            rand = random.choices([0,1],weights = (30,70), k =1)
 
             proto_msg = vehicledetectionmessage_pb2.PBMessage()
             proto_msg.control.action = rand[0]
