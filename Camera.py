@@ -1,4 +1,6 @@
-from typing import Dict, List
+from logging import lastResort
+import time
+from typing import Dict, List, Tuple
 import cv2 as cv
 import numpy as np
 
@@ -7,13 +9,17 @@ import Publish
 
 class Camera:
     cap: cv.VideoCapture
-    lights: Dict[int, List]
+    lights: Dict[int, List[Tuple[int, int]]]
+    filtered_lights: List[Tuple[int, int]]
+    found: bool
 
     def __init__(self):
         self.cap = cv.VideoCapture('evl4.mp4')
         self.last = None
         self.processed_image = None
         self.lights = {}
+        self.filtered_lights = []
+        self.found = False
         for i in range(10):
             self.lights[i] = []
 
@@ -38,8 +44,6 @@ class Camera:
         return None
 
     def detect_blue_lights(self):
-        self.process_picture()
-
         if self.processed_image is None:
             return None
 
@@ -49,6 +53,8 @@ class Camera:
         mask = cv.inRange(self.processed_image, lower_blue, upper_blue)
 
         contours, _ = cv.findContours(mask, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+        if len(contours) > 20:
+            return
         contour_positions = []
         for contour in contours:
             area = cv.contourArea(contour)
@@ -59,23 +65,70 @@ class Camera:
                 contour_positions.append((x, y))
         self.lights[0] = contour_positions
 
-        for i in range(10):
-            positions = self.lights[i]
-            for position in positions:
-                cv.circle(self.img, position, 10, (0, 0, 255), cv.FILLED)
+    def filter_blue_lights(self):
+        self.filtered_lights = []
+        for light in self.lights[0]:
+            appended = False
+            for i in range(9):
+                for position in self.lights[i + 1]:
+                    if light[0] * position[0] + light[1] * position[1] < 1000000:
+                        self.filtered_lights.append(light)
+                        appended = True
+                        break
+                if appended:
+                    break
+
+    def get_blue_lights_image(self):
+        self.process_frame()
+
+        if self.found:
+            for i in range(10):
+                for light in self.filtered_lights:
+                    cv.circle(self.img, light, 10, (0, 0, 255), cv.FILLED)
 
         return self.img
+
+    def process_frame(self):
+        self.process_picture()
+        self.detect_blue_lights()
+        self.filter_blue_lights()
+
+        self.found = len(self.filtered_lights) > 0
 
 
 if __name__ == "__main__":
     cam = Camera()
     publisher = Publish.Publisher()
-
+    points = 0
+    on = False
     imgs = []
-    wr = cv.VideoWriter('blue3.mp4', cv.VideoWriter_fourcc('m', 'p', '4', 'v'), 15,
+    last_sent = time.time()
+    wr = cv.VideoWriter('blue4.mp4', cv.VideoWriter_fourcc('m', 'p', '4', 'v'), 15,
                         (int(cam.cap.get(3)), int(cam.cap.get(4))))
     while True:
-        img = cam.detect_blue_lights()
+        img = cam.get_blue_lights_image()
+
+        if cam.found:
+            if points < 10:
+                points += 5
+                if points >= 10:
+                    if not on:
+                        # TODO SEND MESSAGE
+                        last_sent = time.time()
+                        print("ON")
+                    on = True
+        else:
+            if points > 0:
+                points -= 1
+                if points == 0:
+                    on = False
+
+        t = time.time()
+        if t - last_sent >= 1:
+            pass # TODO SEND MESSAGE
+            last_sent = t
+            print(on)
+
         publisher.send_on() # for testing
         if img is None:
             continue#break
