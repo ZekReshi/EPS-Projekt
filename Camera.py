@@ -113,9 +113,9 @@ if __name__ == "__main__":
                 points += 5
                 if points >= 10:
                     if not on:
-                        # TODO SEND MESSAGE
                         last_sent = time.time()
                         print("ON")
+                        publisher.send(not on)
                     on = True
         else:
             if points > 0:
@@ -125,16 +125,14 @@ if __name__ == "__main__":
 
         t = time.time()
         if t - last_sent >= 1:
-            pass # TODO SEND MESSAGE
+            publisher.send(on)
             last_sent = t
             print(on)
 
-        publisher.send_on() # for testing
         if img is None:
-            continue#break
+            continue #break
         wr.write(img)
         cv.imshow("blue", img)
-        #publisher.send_on()  # or send_off
 
         k = cv.waitKey(5)
         if k == 27:
