@@ -14,7 +14,7 @@ if __name__ == '__main__':
             proto_msg.control.action = rand[0]
             print("Sending "+ vehicledetectionmessage_pb2.Action.Name(proto_msg.control.action))
             ret = client.publish("emergencyvehicledetection", proto_msg.SerializeToString())
-            time.sleep(5)
+            time.sleep(1)
     except KeyboardInterrupt:
         print('stopped')
 
