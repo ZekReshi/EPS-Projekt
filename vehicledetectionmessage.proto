@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package vehicledetection;
+
+enum Action {
+    OFF = 0;
+    ON = 1;
+}
+
+message PBMessage {
+	uint32 source = 1;
+	uint32 target = 2;
+
+	oneof msgtype {
+		PBGenericNumber number = 101;
+		PBGenericText text = 102;
+		PBControl control = 203;
+	}
+}
+
+message PBGenericNumber {
+	sint64 number = 1;
+}
+
+message PBGenericText {
+	string text = 1;
+}
+
+message PBControl {
+   Action action =1;
+}
