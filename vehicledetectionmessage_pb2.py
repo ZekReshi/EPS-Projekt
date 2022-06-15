@@ -4,6 +4,7 @@
 """Generated protocol buffer code."""
 from google.protobuf.internal import enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
+from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
@@ -14,226 +15,18 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor.FileDescriptor(
-  name='vehicledetectionmessage.proto',
-  package='vehicledetection',
-  syntax='proto3',
-  serialized_options=None,
-  create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x1dvehicledetectionmessage.proto\x12\x10vehicledetection\"\xcd\x01\n\tPBMessage\x12\x0e\n\x06source\x18\x01 \x01(\r\x12\x0e\n\x06target\x18\x02 \x01(\r\x12\x33\n\x06number\x18\x65 \x01(\x0b\x32!.vehicledetection.PBGenericNumberH\x00\x12/\n\x04text\x18\x66 \x01(\x0b\x32\x1f.vehicledetection.PBGenericTextH\x00\x12/\n\x07\x63ontrol\x18\xcb\x01 \x01(\x0b\x32\x1b.vehicledetection.PBControlH\x00\x42\t\n\x07msgtype\"!\n\x0fPBGenericNumber\x12\x0e\n\x06number\x18\x01 \x01(\x12\"\x1d\n\rPBGenericText\x12\x0c\n\x04text\x18\x01 \x01(\t\"5\n\tPBControl\x12(\n\x06\x61\x63tion\x18\x01 \x01(\x0e\x32\x18.vehicledetection.Action*\x19\n\x06\x41\x63tion\x12\x07\n\x03OFF\x10\x00\x12\x06\n\x02ON\x10\x01\x62\x06proto3'
-)
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1dvehicledetectionmessage.proto\x12\x10vehicledetection\"\xcd\x01\n\tPBMessage\x12\x0e\n\x06source\x18\x01 \x01(\r\x12\x0e\n\x06target\x18\x02 \x01(\r\x12\x33\n\x06number\x18\x65 \x01(\x0b\x32!.vehicledetection.PBGenericNumberH\x00\x12/\n\x04text\x18\x66 \x01(\x0b\x32\x1f.vehicledetection.PBGenericTextH\x00\x12/\n\x07\x63ontrol\x18\xcb\x01 \x01(\x0b\x32\x1b.vehicledetection.PBControlH\x00\x42\t\n\x07msgtype\"!\n\x0fPBGenericNumber\x12\x0e\n\x06number\x18\x01 \x01(\x12\"\x1d\n\rPBGenericText\x12\x0c\n\x04text\x18\x01 \x01(\t\"5\n\tPBControl\x12(\n\x06\x61\x63tion\x18\x01 \x01(\x0e\x32\x18.vehicledetection.Action*\x19\n\x06\x41\x63tion\x12\x07\n\x03OFF\x10\x00\x12\x06\n\x02ON\x10\x01\x62\x06proto3')
 
-_ACTION = _descriptor.EnumDescriptor(
-  name='Action',
-  full_name='vehicledetection.Action',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='OFF', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='ON', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=380,
-  serialized_end=405,
-)
-_sym_db.RegisterEnumDescriptor(_ACTION)
-
+_ACTION = DESCRIPTOR.enum_types_by_name['Action']
 Action = enum_type_wrapper.EnumTypeWrapper(_ACTION)
 OFF = 0
 ON = 1
 
 
-
-_PBMESSAGE = _descriptor.Descriptor(
-  name='PBMessage',
-  full_name='vehicledetection.PBMessage',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='source', full_name='vehicledetection.PBMessage.source', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='target', full_name='vehicledetection.PBMessage.target', index=1,
-      number=2, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='number', full_name='vehicledetection.PBMessage.number', index=2,
-      number=101, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='text', full_name='vehicledetection.PBMessage.text', index=3,
-      number=102, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='control', full_name='vehicledetection.PBMessage.control', index=4,
-      number=203, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-    _descriptor.OneofDescriptor(
-      name='msgtype', full_name='vehicledetection.PBMessage.msgtype',
-      index=0, containing_type=None,
-      create_key=_descriptor._internal_create_key,
-    fields=[]),
-  ],
-  serialized_start=52,
-  serialized_end=257,
-)
-
-
-_PBGENERICNUMBER = _descriptor.Descriptor(
-  name='PBGenericNumber',
-  full_name='vehicledetection.PBGenericNumber',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='number', full_name='vehicledetection.PBGenericNumber.number', index=0,
-      number=1, type=18, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=259,
-  serialized_end=292,
-)
-
-
-_PBGENERICTEXT = _descriptor.Descriptor(
-  name='PBGenericText',
-  full_name='vehicledetection.PBGenericText',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='text', full_name='vehicledetection.PBGenericText.text', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=294,
-  serialized_end=323,
-)
-
-
-_PBCONTROL = _descriptor.Descriptor(
-  name='PBControl',
-  full_name='vehicledetection.PBControl',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='action', full_name='vehicledetection.PBControl.action', index=0,
-      number=1, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=325,
-  serialized_end=378,
-)
-
-_PBMESSAGE.fields_by_name['number'].message_type = _PBGENERICNUMBER
-_PBMESSAGE.fields_by_name['text'].message_type = _PBGENERICTEXT
-_PBMESSAGE.fields_by_name['control'].message_type = _PBCONTROL
-_PBMESSAGE.oneofs_by_name['msgtype'].fields.append(
-  _PBMESSAGE.fields_by_name['number'])
-_PBMESSAGE.fields_by_name['number'].containing_oneof = _PBMESSAGE.oneofs_by_name['msgtype']
-_PBMESSAGE.oneofs_by_name['msgtype'].fields.append(
-  _PBMESSAGE.fields_by_name['text'])
-_PBMESSAGE.fields_by_name['text'].containing_oneof = _PBMESSAGE.oneofs_by_name['msgtype']
-_PBMESSAGE.oneofs_by_name['msgtype'].fields.append(
-  _PBMESSAGE.fields_by_name['control'])
-_PBMESSAGE.fields_by_name['control'].containing_oneof = _PBMESSAGE.oneofs_by_name['msgtype']
-_PBCONTROL.fields_by_name['action'].enum_type = _ACTION
-DESCRIPTOR.message_types_by_name['PBMessage'] = _PBMESSAGE
-DESCRIPTOR.message_types_by_name['PBGenericNumber'] = _PBGENERICNUMBER
-DESCRIPTOR.message_types_by_name['PBGenericText'] = _PBGENERICTEXT
-DESCRIPTOR.message_types_by_name['PBControl'] = _PBCONTROL
-DESCRIPTOR.enum_types_by_name['Action'] = _ACTION
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
-
+_PBMESSAGE = DESCRIPTOR.message_types_by_name['PBMessage']
+_PBGENERICNUMBER = DESCRIPTOR.message_types_by_name['PBGenericNumber']
+_PBGENERICTEXT = DESCRIPTOR.message_types_by_name['PBGenericText']
+_PBCONTROL = DESCRIPTOR.message_types_by_name['PBControl']
 PBMessage = _reflection.GeneratedProtocolMessageType('PBMessage', (_message.Message,), {
   'DESCRIPTOR' : _PBMESSAGE,
   '__module__' : 'vehicledetectionmessage_pb2'
@@ -262,5 +55,17 @@ PBControl = _reflection.GeneratedProtocolMessageType('PBControl', (_message.Mess
   })
 _sym_db.RegisterMessage(PBControl)
 
+if _descriptor._USE_C_DESCRIPTORS == False:
 
+  DESCRIPTOR._options = None
+  _ACTION._serialized_start=380
+  _ACTION._serialized_end=405
+  _PBMESSAGE._serialized_start=52
+  _PBMESSAGE._serialized_end=257
+  _PBGENERICNUMBER._serialized_start=259
+  _PBGENERICNUMBER._serialized_end=292
+  _PBGENERICTEXT._serialized_start=294
+  _PBGENERICTEXT._serialized_end=323
+  _PBCONTROL._serialized_start=325
+  _PBCONTROL._serialized_end=378
 # @@protoc_insertion_point(module_scope)
