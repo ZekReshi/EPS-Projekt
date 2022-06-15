@@ -27,7 +27,7 @@ class Actuator:
         try:
             proto_msg.ParseFromString(msg.payload)
 
-            if proto_msg.HasField('action'):
+            if proto_msg.HasField('control'):
                 self.logger.debug('got message at %s with content %s', str(msg.topic), commandString)
                 self.logger.info('got message from %s (with target %s)', proto_msg.source, proto_msg.target)
                 self.logger.info('action numeric %s', proto_msg.control.action)
@@ -35,7 +35,10 @@ class Actuator:
                 self.call_back(proto_msg.control.action)
             else:
                 self.logger.warning('got message at %s with content %s', str(msg.topic), commandString)
-        except:
+
+        except Exception as e:
+            print("Oops!", e.__class__, "occurred.")
+            print(e)
             self.logger.warning('Unable to decode message: No valid ProtoBuf Msg received')
 
 
