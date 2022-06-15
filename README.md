@@ -5,4 +5,4 @@ https://github.com/grpc/grpc/blob/master/tools/distrib/python/grpcio_tools/grpc_
 python -m pip install grpcio-tools
 
 protobuf compiler usage:
-python protoc.py --proto_path=. --python_out=. vehicledetectionmessage.proto
+python -m grpc.tools.protoc --proto_path=. --python_out=. vehicledetectionmessage.proto
