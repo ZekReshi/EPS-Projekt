@@ -8,7 +8,7 @@ class Camera:
     cap: cv.VideoCapture
 
     def __init__(self):
-        self.cap = cv.VideoCapture('evl3.mp4')
+        self.cap = cv.VideoCapture('evl4.mp4')
         self.last = None
 
     def take(self):
