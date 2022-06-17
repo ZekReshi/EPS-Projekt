@@ -6,16 +6,14 @@ import time
 GPIO.setmode(GPIO.BCM)
 
 blinkThread = None
-blink = False
 led_pin = 14
 GPIO.setup(led_pin, GPIO.OUT)
 GPIO.output(led_pin, False)
 
 def blink_loop():
-    global blink
     on = True
     while True:
-        GPIO.output(led_pin, on & blink)
+        GPIO.output(led_pin, on)
         on = not on
         time.sleep(0.1)
 
