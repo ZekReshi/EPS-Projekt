@@ -101,8 +101,8 @@ def main():
     points = 0
     on = False
     last_sent = time.time()
-    wr = cv.VideoWriter('blue4.mp4', cv.VideoWriter_fourcc('m', 'p', '4', 'v'), 15,
-                        (int(cam.cap.get(3)), int(cam.cap.get(4))))
+    #wr = cv.VideoWriter('blue4.mp4', cv.VideoWriter_fourcc('m', 'p', '4', 'v'), 15,
+    #                    (int(cam.cap.get(3)), int(cam.cap.get(4))))
     while True:
         img = cam.get_blue_lights_image()
 
@@ -112,7 +112,7 @@ def main():
                 if points >= 10:
                     if not on:
                         last_sent = time.time()
-                        print("True")
+                        #print("True")
                         publisher.send(not on)
                     on = True
         else:
@@ -125,16 +125,16 @@ def main():
         if t - last_sent >= 1:
             publisher.send(on)
             last_sent = t
-            print(on)
+            #print(on)
 
         if img is None:
             continue #break
-        wr.write(img)
-        cv.imshow("blue", img)
+        #wr.write(img)
+        #cv.imshow("blue", img)
 
-        k = cv.waitKey(5)
-        if k == 27:
-            break
+        #k = cv.waitKey(5)
+        #if k == 27:
+            #break
     publisher.send(False)
     input()
-    wr.release()
+    #wr.release()
