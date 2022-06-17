@@ -4,7 +4,6 @@ from MQTT.vehicledetectionmessage_pb2 import Action
 import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BCM)
-import threading
 
 blinkThread = None
 active = False
