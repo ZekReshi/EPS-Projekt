@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1dvehicledetectionmessage.proto\x12\x10vehicledetection\"\xcd\x01\n\tPBMessage\x12\x0e\n\x06source\x18\x01 \x01(\r\x12\x0e\n\x06target\x18\x02 \x01(\r\x12\x33\n\x06number\x18\x65 \x01(\x0b\x32!.vehicledetection.PBGenericNumberH\x00\x12/\n\x04text\x18\x66 \x01(\x0b\x32\x1f.vehicledetection.PBGenericTextH\x00\x12/\n\x07\x63ontrol\x18\xcb\x01 \x01(\x0b\x32\x1b.vehicledetection.PBControlH\x00\x42\t\n\x07msgtype\"!\n\x0fPBGenericNumber\x12\x0e\n\x06number\x18\x01 \x01(\x12\"\x1d\n\rPBGenericText\x12\x0c\n\x04text\x18\x01 \x01(\t\"5\n\tPBControl\x12(\n\x06\x61\x63tion\x18\x01 \x01(\x0e\x32\x18.vehicledetection.Action*\x19\n\x06\x41\x63tion\x12\x07\n\x03OFF\x10\x00\x12\x06\n\x02ON\x10\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1dvehicledetectionmessage.proto\x12\x10vehicledetection\"f\n\tPBMessage\x12\x0e\n\x06source\x18\x01 \x01(\r\x12\x0e\n\x06target\x18\x02 \x01(\r\x12.\n\x07\x63ontrol\x18\x03 \x01(\x0b\x32\x1b.vehicledetection.PBControlH\x00\x42\t\n\x07msgtype\"5\n\tPBControl\x12(\n\x06\x61\x63tion\x18\x01 \x01(\x0e\x32\x18.vehicledetection.Action*\x19\n\x06\x41\x63tion\x12\x07\n\x03OFF\x10\x00\x12\x06\n\x02ON\x10\x01\x62\x06proto3')
 
 _ACTION = DESCRIPTOR.enum_types_by_name['Action']
 Action = enum_type_wrapper.EnumTypeWrapper(_ACTION)
@@ -24,8 +24,6 @@ ON = 1
 
 
 _PBMESSAGE = DESCRIPTOR.message_types_by_name['PBMessage']
-_PBGENERICNUMBER = DESCRIPTOR.message_types_by_name['PBGenericNumber']
-_PBGENERICTEXT = DESCRIPTOR.message_types_by_name['PBGenericText']
 _PBCONTROL = DESCRIPTOR.message_types_by_name['PBControl']
 PBMessage = _reflection.GeneratedProtocolMessageType('PBMessage', (_message.Message,), {
   'DESCRIPTOR' : _PBMESSAGE,
@@ -33,20 +31,6 @@ PBMessage = _reflection.GeneratedProtocolMessageType('PBMessage', (_message.Mess
   # @@protoc_insertion_point(class_scope:vehicledetection.PBMessage)
   })
 _sym_db.RegisterMessage(PBMessage)
-
-PBGenericNumber = _reflection.GeneratedProtocolMessageType('PBGenericNumber', (_message.Message,), {
-  'DESCRIPTOR' : _PBGENERICNUMBER,
-  '__module__' : 'vehicledetectionmessage_pb2'
-  # @@protoc_insertion_point(class_scope:vehicledetection.PBGenericNumber)
-  })
-_sym_db.RegisterMessage(PBGenericNumber)
-
-PBGenericText = _reflection.GeneratedProtocolMessageType('PBGenericText', (_message.Message,), {
-  'DESCRIPTOR' : _PBGENERICTEXT,
-  '__module__' : 'vehicledetectionmessage_pb2'
-  # @@protoc_insertion_point(class_scope:vehicledetection.PBGenericText)
-  })
-_sym_db.RegisterMessage(PBGenericText)
 
 PBControl = _reflection.GeneratedProtocolMessageType('PBControl', (_message.Message,), {
   'DESCRIPTOR' : _PBCONTROL,
@@ -58,14 +42,10 @@ _sym_db.RegisterMessage(PBControl)
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  _ACTION._serialized_start=380
-  _ACTION._serialized_end=405
-  _PBMESSAGE._serialized_start=52
-  _PBMESSAGE._serialized_end=257
-  _PBGENERICNUMBER._serialized_start=259
-  _PBGENERICNUMBER._serialized_end=292
-  _PBGENERICTEXT._serialized_start=294
-  _PBGENERICTEXT._serialized_end=323
-  _PBCONTROL._serialized_start=325
-  _PBCONTROL._serialized_end=378
+  _ACTION._serialized_start=210
+  _ACTION._serialized_end=235
+  _PBMESSAGE._serialized_start=51
+  _PBMESSAGE._serialized_end=153
+  _PBCONTROL._serialized_start=155
+  _PBCONTROL._serialized_end=208
 # @@protoc_insertion_point(module_scope)
