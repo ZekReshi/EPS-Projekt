@@ -1,10 +1,9 @@
-from logging import lastResort
 import time
 from typing import Dict, List, Tuple
 import cv2 as cv
 import numpy as np
 
-import Publish
+import MQTT.Publish as publish
 
 
 class Camera:
@@ -96,9 +95,9 @@ class Camera:
         self.found = len(self.filtered_lights) > 0
 
 
-if __name__ == "__main__":
+def main():
     cam = Camera()
-    publisher = Publish.Publisher()
+    publisher = publish.Publisher()
     points = 0
     on = False
     imgs = []
@@ -114,7 +113,7 @@ if __name__ == "__main__":
                 if points >= 10:
                     if not on:
                         last_sent = time.time()
-                        print("ON")
+                        print("True")
                         publisher.send(not on)
                     on = True
         else:
@@ -137,5 +136,6 @@ if __name__ == "__main__":
         k = cv.waitKey(5)
         if k == 27:
             break
+    publisher.send(False)
     input()
     wr.release()

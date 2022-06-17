@@ -1,5 +1,5 @@
-from Actuator import Actuator
-from vehicledetectionmessage_pb2 import Action
+from Actuators.Actuator import Actuator
+from MQTT.vehicledetectionmessage_pb2 import Action
 from pydub import AudioSegment
 from pydub.playback import play
 import multiprocessing
@@ -24,7 +24,7 @@ def on_message(action: Action):
         playThread = None
 
 
-if __name__ == '__main__':
+def main():
     actuator = Actuator(on_message)
     ready = AudioSegment.from_file("./Assets/ready.mp3", format="mp3")
     play(ready)

@@ -1,5 +1,5 @@
 import paho.mqtt.client as mqtt
-import vehicledetectionmessage_pb2
+import MQTT.vehicledetectionmessage_pb2 as vehicledetectionmessage_pb2
 import random
 import time
 if __name__ == '__main__':

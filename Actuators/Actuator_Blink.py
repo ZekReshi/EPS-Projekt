@@ -1,5 +1,5 @@
-from Actuator import Actuator
-from vehicledetectionmessage_pb2 import Action
+from Actuators.Actuator import Actuator
+from MQTT.vehicledetectionmessage_pb2 import Action
 
 
 def on_message(action: Action):
@@ -9,6 +9,6 @@ def on_message(action: Action):
         print("OFF")
 
 
-if __name__ == '__main__':
+def main():
     actuator = Actuator(on_message)
     actuator.on_run()

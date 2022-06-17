@@ -3,7 +3,7 @@
 from __future__ import division
 import time
 import paho.mqtt.client as mqtt
-import vehicledetectionmessage_pb2
+import MQTT.vehicledetectionmessage_pb2 as message
 import logging
 
 
@@ -23,7 +23,7 @@ class Actuator:
 
     def on_message(self, client, userdata, msg):
         commandString = str(msg.payload)
-        proto_msg = vehicledetectionmessage_pb2.PBMessage()
+        proto_msg = message.PBMessage()
         try:
             proto_msg.ParseFromString(msg.payload)
 
@@ -31,7 +31,7 @@ class Actuator:
                 self.logger.debug('got message at %s with content %s', str(msg.topic), commandString)
                 self.logger.info('got message from %s (with target %s)', proto_msg.source, proto_msg.target)
                 self.logger.info('action numeric %s', proto_msg.control.action)
-                self.logger.info('action Info %s', vehicledetectionmessage_pb2.Action.Name(proto_msg.control.action))
+                self.logger.info('action Info %s', message.Action.Name(proto_msg.control.action))
                 self.call_back(proto_msg.control.action)
             else:
                 self.logger.warning('got message at %s with content %s', str(msg.topic), commandString)
