@@ -70,7 +70,6 @@ class Camera:
                 for position in self.lights[i + 1]:
                     dx = light[0] - position[0]
                     dy = light[1] - position[1]
-                    print(dx * dx + dy * dy)
                     if dx * dx + dy * dy < 900:
                         self.filtered_lights.append(light)
                         appended = True
