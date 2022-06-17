@@ -18,7 +18,7 @@ class Actuator:
         self.call_back = call_back
 
     def on_connect(self, client, userdata, flags, rc):
-        client.subscribe("camera/emergency-light", qos=0)
+        client.subscribe("emergencyvehicledetection", qos=0)
         self.logger.info('Connected with result code %s', str(rc))
 
     def on_message(self, client, userdata, msg):
