@@ -40,8 +40,6 @@ class Camera:
             else:
                 self.last = cv.cvtColor(blur, cv.COLOR_BGR2GRAY)
 
-        return None
-
     def detect_blue_lights(self):
         if self.processed_image is None:
             return None
@@ -70,7 +68,10 @@ class Camera:
             appended = False
             for i in range(9):
                 for position in self.lights[i + 1]:
-                    if light[0] * position[0] + light[1] * position[1] < 1000000:
+                    dx = light[0] - position[0]
+                    dy = light[1] - position[1]
+                    print(dx * dx + dy * dy)
+                    if dx * dx + dy * dy < 900:
                         self.filtered_lights.append(light)
                         appended = True
                         break
@@ -100,7 +101,6 @@ def main():
     publisher = publish.Publisher()
     points = 0
     on = False
-    imgs = []
     last_sent = time.time()
     wr = cv.VideoWriter('blue4.mp4', cv.VideoWriter_fourcc('m', 'p', '4', 'v'), 15,
                         (int(cam.cap.get(3)), int(cam.cap.get(4))))
